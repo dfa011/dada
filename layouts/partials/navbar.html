@@ -1,0 +1,67 @@
+<!-- Top NavBar -->
+<nav class="navbar is-transparent py-3 py-6-tablet is-unselectable" role="navigation" aria-label="main navigation">
+  <div class="container  px-4">
+
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{{ .Site.BaseURL | relURL }}">
+        {{ if .Site.Params.navbarLogo }}
+          <img src="{{ .Site.Params.navbarLogo | relURL }}" alt="icon" height="28">
+        {{ else if .Site.Params.navbarIcon }}
+          <img src="{{ .Site.Params.navbarIcon | relURL }}" alt="icon" height="28">
+          <span class="is-size-5 is-size-5-touch ml-3 ">{{ .Site.Title }}</span>
+        {{ else }}
+          <img src="{{ .Site.Params.icon | relURL }}" alt="icon" height="28">
+          <span class="is-size-5 is-size-5-touch ml-3 ">{{ .Site.Title }}</span>
+        {{ end }}
+      </a>
+
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="{{ .Site.BaseURL | relURL }}">
+          Home
+        </a>
+
+        {{ range $item := .Site.Data.navbar.links }}
+          {{ if eq $item.type "dropdown" }}
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a target="{{ $item.target }}" class="navbar-link" href="{{ $item.url | relURL }}">
+              {{ $item.title }}
+            </a>
+            <div class="navbar-dropdown">
+              {{ range $subitem := $item.items }}
+                {{ if $subitem.divider }}
+                <hr class="navbar-divider">
+                {{ else }}
+                <a target="{{ $subitem.target }}" class="navbar-item" href="{{ $subitem.url | relURL }}">
+                  {{ $subitem.title }}
+                </a>
+                {{ end }}
+              {{ end }}
+            </div>
+          </div>
+          {{ else if eq $item.type "button" }}
+          <div class="navbar-item">
+            <a target="{{ $item.target }}" class="button is-primary" href="{{ $item.url | relURL }}">
+              <strong>{{ $item.title }}</strong>
+            </a>
+          {{ else }}
+            <a target="{{ $item.target }}" class="navbar-item" href="{{ $item.url | relURL }}">
+              {{ $item.title }}
+            </a>
+            {{ end }}
+          {{ end }}
+          
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+</script>

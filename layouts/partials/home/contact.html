@@ -1,0 +1,28 @@
+<section class="section-contact section container" id="{{ replace (lower .Site.Data.home.contact.title) " " "-" }}">
+    <div class=" has-text-centered"  {{ if .Site.Params.EnableAOS }} data-aos="fade-up" data-aos-once="true" {{ end }}>
+        <div class="is-size-2 is-size-3-mobile has-text-grey-dark has-text-weight-semibold">
+            {{ if .Site.Data.home.contact.title }}
+            {{ .Site.Data.home.contact.title }}
+            {{ else }}
+            Reach Out
+            {{ end }}
+        </div>
+        <p class="has-text-grey">
+            {{ .Site.Data.home.contact.subtitle }}
+        </p>
+    </div>
+
+    <div class="mt-6">
+        <div class="columns">
+            <div class="column has-text-centered"  {{ if .Site.Params.EnableAOS }} data-aos="fade-left" data-aos-once="true" {{ end }}>
+                <img src="{{ .Site.Data.home.contact.image | relURL }}" alt="" class="has-rounded-border">
+                <div class="image-container">
+                </div>
+            </div>
+            <div class="column is-three-quarters-tablet is-three-fifths-desktop"  {{ if .Site.Params.EnableAOS }} data-aos="fade-right" data-aos-once="true" {{ end }}>
+                {{- partial "home/contact_form.html" . -}}
+            </div>
+        </div>
+    </div>
+
+</section>

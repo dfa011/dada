@@ -1,0 +1,90 @@
+<!-- Call To Action - CTA -->
+<section class="hero is-medium is-unselectable mb-6" id="cta">
+    <div class="hero-body box mx-6 has-background-info-light"  {{ if .Site.Params.EnableAOS }} data-aos="zoom-in" data-aos-once="true" {{ end }}>
+        <div class="container">
+            <div class="columns is-block-touch">
+                <div class="column is-three-fifths-desktop">
+                    <p class="title is-size-5-mobile is-size-4-touch">
+                        <i class="fa {{ if .Site.Data.home.cta.icon }} {{ .Site.Data.home.cta.icon }} {{ else }} fa-paper-plane {{ end }} pr-2" aria-hidden="true"></i> 
+                        {{ .Site.Data.home.cta.title }}
+                    </p>
+                    <p class="subtitle pt-4 is-size-6-touch">
+                        {{ .Site.Data.home.cta.tag | safeHTML }}
+
+                        <div class="mt-1">
+                            {{ range $item := .Site.Data.home.cta.tags }}
+                            <span class="tag is-white is-light is-size-7">{{ $item }}</span>
+                            {{ end }}
+                        </div>
+                    </p>
+                </div>
+                <div class="column">
+                    <form name="cta-form" action="{{ .Site.Data.home.cta.formURL }}" method="POST" onsubmit="return validateCTAForm()" >
+                        <div class="field columns mt-2">
+                            <div class="control has-icons-left is-exapanded mx-3 mt-3">
+                                <!-- TOOD: replace with AlpineJS hooks -->
+                                <input 
+                                onkeypress = "this.onchange();"
+                                onpaste    = "this.onchange();"
+                                oninput    = "this.onchange();" 
+                                onchange="validateCTAEmail()" 
+                                id="emailCTA" class="input is-medium-desktop" type="email" name="email"
+                                    placeholder="email address" x-model="ctaEmail" required>
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <span class="icon is-small is-right">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                            </div>
+                            <div class="control ml-3 mt-3">
+                                <input id="btnCTA" class="is-pulled-center-touch is-medium-desktop button is-primary" type="submit" value="Submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            {{ if .Site.Data.home.cta.footer }}
+            <div class="py-4 is-size-7 has-text-grey-dark">
+                {{ .Site.Data.home.cta.footer | safeHTML }}                
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<script>
+    /** 
+     * TODO: Replace this with AlpineJS code
+     **/
+
+    var emInputCTA = document.getElementById("emailCTA");
+    var btnCTA = document.getElementById("btnCTA");
+
+    btnCTA.setAttribute("disabled", '');
+
+    function validateCTAEmail(){
+        var formCTA = document.forms["cta-form"]["email"];
+
+        emInputCTA.classList.remove("is-danger");
+        if (formCTA.value == "") {
+            emInputCTA.classList.add("is-danger");
+            btnCTA.setAttribute("disabled", '');
+        }else{
+            btnCTA.removeAttribute("disabled");
+        }
+    }
+
+    function validateCTAForm(){
+        var formCTA = document.forms["cta-form"]["email"];
+
+        emInputCTA.classList.remove("is-danger");
+        if (formCTA.value == "") {
+            /*  alert("Email must be filled out");  */
+            emInputCTA.classList.add("is-danger");
+            return false;
+        }
+        return true;
+    }
+</script>

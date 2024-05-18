@@ -1,0 +1,80 @@
+<section class="section-services section container" id="{{ replace (lower .Site.Data.home.services.title) " " "-" }}">
+    <div class=" has-text-centered"  {{ if .Site.Params.EnableAOS }} data-aos="fade-up" {{ end }}>
+        <div class="is-size-2 is-size-3-mobile has-text-grey-dark has-text-weight-semibold">
+            {{ if .Site.Data.home.services.title }}
+            {{ .Site.Data.home.services.title }}
+            {{ else }}
+            Services
+            {{ end }}
+        </div>
+        <p class="has-text-grey">
+            {{ .Site.Data.home.services.subtitle }}
+        </p>
+    </div>
+
+    <div class="mt-6">
+        <div class="columns">
+            <div class="column has-text-centered">
+                <img  {{ if .Site.Params.EnableAOS }} data-aos="fade-left" {{ end }} src="{{ .Site.Data.home.services.image | relURL }}" alt="" class="has-rounded-border">
+                <div class="image-container">
+                </div>
+            </div>
+            <div class="column is-three-quarters-tablet">
+
+                {{ $items := .Site.Data.home.services.items }}
+                {{ $len := sub ($items | len) 1 }}
+                {{ $enableAOS := .Site.Params.EnableAOS }}
+
+                {{ range $j, $Seq := (seq 2) }}
+
+                <div class="{{ if eq $j 0 }}is-hidden-desktop{{ else }}is-hidden-touch{{ end }}">
+
+
+                    {{/*  Items  */}}
+                    {{ range $i, $item := $items }}
+
+                    {{ $breakpoint := 3 }} {{/*  default  */}}
+                    {{ if eq $j 0 }}{{ $breakpoint := 2 }}{{ end }}{{/*  Touch  */}}
+
+                    {{ $break := mod $i $breakpoint }}
+
+                    {{ $closediv := 2 }} {{/*  default  */}}
+                    {{ if eq $j 0 }}{{ $closediv := 1 }}{{ end }}{{/*  Touch  */}}
+
+                    {{ if eq $break 0 }}
+                    <div class="columns">
+                        {{ end }}
+
+                        <div class="column {{ if eq $j 0 }}is-half{{ else }}is-one-third{{ end }}">
+                            <div class="box"  {{ if $enableAOS }} data-aos="fade-up" data-aos-delay="{{ math.Min (mul $i 100) 500 }}" {{ end }}>
+                                <div class="has-text-primary my-5">
+                                    <i class="fa {{ $item.icon }} fa-3x" aria-hidden="true"></i>
+                                </div>
+                                <div class="is-size-6 has-text-weight-semibold">{{ $item.title }}</div>
+                                <div class="has-text-grey pt-4 has-text-justified is-size-7">{{ $item.text }}</div>
+
+                                {{ if $item.link }}
+                                <a class="mt-5 button is-info is-inverted is-small" href="{{ $item.link | relURL }}"
+                                    target="{{ $item.linkTarget }}">
+                                    {{ if $item.linkText }}
+                                    {{ $item.linkText }}
+                                    {{ else }}
+                                    Learn More ...
+                                    {{ end }}
+                                </a>
+                                {{ end }}
+                            </div>
+                        </div>
+
+                        {{ if or (eq $i $len) (eq $break $closediv )}}
+                    </div>
+                    {{ end }}
+                    {{ end }}
+
+                </div>
+
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>

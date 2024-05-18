@@ -1,0 +1,29 @@
+<section class="section-about section container" id="{{ replace (lower .Site.Data.home.about.title) " " "-" }}">
+    <div class="columns is-vcentered">
+        <div class="column image-container has-text-centered">
+            <img src="{{ .Site.Data.home.about.image | relURL }}" alt="" class="has-rounded-border"  {{ if .Site.Params.EnableAOS }} data-aos="fade-left" data-aos-once="true" {{ end }}>
+        </div>
+        <div class="column"  {{ if .Site.Params.EnableAOS }} data-aos="fade-right" data-aos-once="true" {{ end }}>
+            <h2 class="title is-size-2 is-size-3-mobile">
+                {{ .Site.Data.home.about.title }}
+            </h2>
+            <p class="">
+                {{ .Site.Data.home.about.subtitle }}
+            </p>
+            <div class="mt-5 has-text-grey has-text-justified pr-3">
+                {{ .Site.Data.home.about.text | safeHTML }}
+            </div>
+
+            {{ if .Site.Data.home.about.link }}
+            <a class="mt-5 button is-primary {{ if .Site.Data.home.about.linkIsOutline }}is-outlined{{ end }}"
+                href="{{ .Site.Data.home.about.link | relURL }}" target="{{ .Site.Data.home.about.linkTarget }}"
+                rel="noopener noreferrer">
+                {{ if .Site.Data.home.about.linkIcon }}
+                <i class="fa {{ .Site.Data.home.about.linkIcon }} pr-3" aria-hidden="true"></i>
+                {{ end }}
+                {{ .Site.Data.home.about.linkText }}
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</section>

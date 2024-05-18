@@ -1,0 +1,43 @@
+<!-- main content -->
+<section class="section container py-5 px-4 has-navbar-fixed-top" id="main">
+
+    <div class="columns"  {{ if .Site.Params.EnableAOS }} data-aos="fade-down" data-aos-once="true" {{ end }}>
+        <!-- Show BreadCrumbs -->
+        {{ if (and (not .IsHome ) ( ne false (default .Site.Params.breadCrumbs .Params.breadCrumbs)) ) }}
+        <div class="column">
+            {{- partial "breadcrumbs.html" . -}}
+        </div>
+        {{ end }}
+
+        <div class="column has-text-right ">
+            {{ if not .Lastmod.IsZero }}
+                <small class="is-size-6">
+                    <p class="has-text-grey is-size-7">{{ if .Params.lastModTitle }}{{ .Params.lastModTitle }}{{ else if .Site.Params.lastModTitle }}{{ .Site.Params.lastModTitle }}{{ else }}Updated on{{ end }}</p>
+                    {{ .Lastmod.Format "Jan 2, 2006" }}
+                </small>
+            {{ end }}
+        </div>
+    </div>
+
+    <div class="py-6 px-4 {{ if .Params.isJustified }} has-text-justified {{ end }}" id="main-contnet">
+
+        {{ if .Title }}
+        <div class="{{ if .Params.addTitleBackground }}has-background-link-light{{ end }} py-5 has-rounded-border" style=""  {{ if .Site.Params.EnableAOS }} data-aos="zoom-in" data-aos-once="true" {{ end }}>        
+            {{ if .Params.image }}
+                <div class="has-text-centered mb-4">
+                    <img style="max-width: {{ if .Params.imageWidth }}{{ .Params.imageWidth }}{{ else }}300px{{ end }};" class="" src="{{ .Params.image | relURL }}" alt="{{ .Title }}">
+                </div>
+            {{ end }}
+
+            <div class="has-text-centered title mb-1">{{ .Title }}</div>
+
+            <div class="has-text-centered is-size-7 mt-1">{{ .Params.subtitle }}</div>
+        </div>
+        {{ end }}
+
+            <div class="content mt-6"  {{ if .Site.Params.EnableAOS }} data-aos="fade-down" data-aos-once="true" {{ end }}>
+                {{ .Content  | safeHTML }}
+            </div>
+        </div>
+        
+</section>

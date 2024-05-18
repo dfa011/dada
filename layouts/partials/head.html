@@ -1,0 +1,60 @@
+<!-- <head></head> content -->
+
+<!-- meta -->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{{ "<!-- Default -->" | safeHTML }}
+<meta name="application-name" content="{{ .Site.Title }}" />
+<meta name="title" content="{{ if .IsHome }}Home | {{ else }}{{ .Title }} | {{ end }}{{ .Site.Title }}" />
+<meta name="icon" content="{{ .Site.Params.icon | relURL }}" />
+<meta name="description" content="{{ if .Params.description }}{{ .Params.description }}{{ else if .Site.Params.summary }}{{ .Site.Params.summary }}{{ else if .Site.Params.Description }}{{ .Site.Params.Description }}{{ else }}Hardcoded description; the author should update :){{ end }}" />
+<meta name="keywords" content="{{ if .Params.keywords }}{{ .Params.keywords }}{{ else if .Site.Params.keywords }}{{ .Site.Params.keywords }}{{ else if .Site.Params.Keywords }}{{ .Site.Params.Keywords }}{{ else }}Hardcoded keywords; the author should update :){{ end }}" />
+<meta name="author" content="{{ if .Params.author }}{{ .Params.author }}{{ else if .Site.Author }}{{ .Site.Author }}{{ else if .Site.Params.Author }}{{ .Site.Params.Author }}{{ else }}Hardcoded author; the author should update :){{ end }}" />
+<meta name="robots" content="index, follow" />
+<meta name="referrer" content="origin" />
+<meta name="theme-color" content="#ffffff" />
+
+{{ "<!-- Microsoft -->" | safeHTML }}
+<meta name="msapplication-navbutton-color" content="#ffffff" /> 
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="{{ if .Site.Params.meta.logo }}{{ .Site.Params.meta.logo | relURL }}{{ else }}{{ .Site.Params.icon | relURL }}{{ end }}" />
+<meta name="msapplication-square70x70logo" content="{{ if .Site.Params.meta.logo70 }}{{ .Site.Params.meta.logo70 | relURL }}{{ else }}{{ .Site.Params.icon | relURL }}{{ end }}" />
+<meta name="msapplication-square150x150logo" content="{{ if .Site.Params.meta.logo150 }}{{ .Site.Params.meta.logo150 | relURL }}{{ else }}{{ .Site.Params.icon | relURL }}{{ end }}" />
+<meta name="msapplication-square310x310logo" content="{{ if .Site.Params.meta.logo310 }}{{ .Site.Params.meta.logo310 | relURL }}{{ else }}{{ .Site.Params.icon | relURL }}{{ end }}" />
+
+{{ "<!-- Apple -->" | safeHTML }}
+<meta name="apple-mobile-web-app-title" content="{{ .Site.Title }}" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="#ffffff" />
+
+{{ "<!-- twitter -->" | safeHTML }}
+{{ template "_internal/twitter_cards.html" . }}
+
+{{ "<!-- opengraph -->" | safeHTML }}
+{{ template "_internal/opengraph.html" . }}
+
+<!-- Title -->
+<title>
+    {{- block "title" . -}}
+    {{ if .IsHome }}Home | {{ else }}{{ .Title }} | {{ end }}{{ .Site.Title }}
+    {{- end -}}
+</title>
+
+<!-- favicon -->
+<link rel="shortcut icon" href="{{ .Site.Params.icon | relURL }}" type="image/x-icon">
+
+<!-- imports -->
+{{- partial "imports/preconnect.html" -}}
+{{- partial "imports/styles.html" -}}
+
+{{/*  Optional Imports  */}}
+{{ if .Site.Params.EnableAOS }}
+{{ "<!-- AnimateOnScroll | AoS -->" | safeHTML }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.x/dist/aos.min.css">
+{{ end }}
+
+
+<!-- head extra -->
+{{- partial "extend/head.html" -}}

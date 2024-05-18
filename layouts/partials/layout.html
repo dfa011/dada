@@ -1,0 +1,45 @@
+<!--
+
+Impact Theme © 2022 Acknology Co.
+Licensed under MIT.
+
+AboutUs: https://acknology.co/
+-->
+
+<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en{{ end }}">
+
+{{ partial "copy_head.html" . }}
+
+<head>
+    {{- partial "head.html" . -}}
+</head>
+
+<!-- Body -->
+<body class="has-background-white-bis">
+
+    {{- partial "navbar.html" . -}}
+    
+    {{ block "main" . }}
+        {{- partial "content.html" . -}}
+    {{ end }}
+
+    {{- partial "footer.html" . -}}
+
+
+    {{ "<!--  Back To Top Button -->" | safeHTML }}
+    <a id="backtotop" href="javascript:void(0);" class="button is-medium is-hidden-touch">
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+
+    <!-- Scripts etc... -->
+    {{- partial "imports/scripts.html" . -}}
+
+    {{- partial "extend/body.html" . -}}
+
+    <!-- GoogleAnalytics -->
+    {{ template "_internal/google_analytics.html" . }}
+
+</body>
+
+</html>

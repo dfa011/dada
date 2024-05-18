@@ -1,0 +1,47 @@
+<!-- main content -->
+{{- block "home" . }}
+
+<div id="home" class="is-unselectable has-navbar-fixed-top">
+
+    {{/*  Top Section  */}}
+    {{ if .Site.Data.home.top.enable }}
+        {{- partial "home/top.html" . -}}
+    {{ end }}
+
+    {{/*  About Section  */}}
+    {{ if .Site.Data.home.about.enable }}
+        {{- partial "home/about.html" . -}}
+    {{ end }}
+
+    {{/*  services Section  */}}
+    {{ if .Site.Data.home.services.enable }}
+        {{- partial "home/services.html" . -}}
+    {{ end }}
+
+    {{/*  contact Section  */}}
+    {{ if .Site.Data.home.contact.enable }}
+        {{- partial "home/contact.html" . -}}
+    {{ end }}
+    
+    {{/*  clients Section  */}}
+    {{ if .Site.Data.home.clients.enable }}
+        {{- partial "home/clients.html" . -}}
+    {{ end }}
+
+
+    {{/*  other content Section  */}}
+    {{ if .Content }}
+    <section class="section-content section container">
+        {{ .Content }}
+    </section>
+    {{ end}}
+
+    {{/*  cta Section  */}}
+    {{ if .Site.Data.home.cta.enable }}
+        {{- partial "home/cta.html" . -}}
+    {{ end }}
+
+</div>
+
+
+{{- end -}}

@@ -1,0 +1,21 @@
+# theme.toml template for a Hugo theme
+# see https://github.com/gohugoio/hugoThemesSiteBuilder#theme-configuration for Example config 
+
+name = "Impact"
+license = "MIT"
+licenselink = "https://github.com/AcknologyHQ/impact-hugo/blob/main/LICENSE.txt"
+description = "Simple Minimal Elegant Theme"
+
+# The home page of the theme, where the source can be found.
+homepage = "https://github.com/AcknologyHQ/impact-hugo"
+
+# If you have a running demo of the theme.
+demosite = "https://acknologyhq.github.io/impact-hugo"
+
+tags = ["company", "landing", "light", "minimal", "responsive"]
+features = ["responsive", "opengraph", "social-icons", "scroll-to-top", "favicon"]
+
+# If the theme has a single author
+[author]
+    name = "Acknology Co."
+    homepage = "https://acknology.co"

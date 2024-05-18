@@ -1,0 +1,23 @@
+links:
+
+  - title: "link"
+    url: "/"
+
+  - title: "Dropdown"
+    type: "dropdown"
+    items:
+      - title: "Item 1"
+        url: "/"
+      - title: "Item 2 - blank"
+        url: "/"
+        target: "_blank"
+
+      - divider: true
+      
+      - title: "Item 3"
+        url: "/"
+
+  - title: "Read Docs"
+    url: "https://acknologyhq.github.io/impact-hugo"
+    type: "button"
+      

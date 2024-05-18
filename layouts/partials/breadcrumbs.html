@@ -1,0 +1,23 @@
+<!-- BreadCrumbs -->
+
+{{ $url := replace .Permalink ( printf "%s" .Site.BaseURL) "" }}
+{{ $.Scratch.Add "path" .Site.BaseURL }}
+<nav class="breadcrumb is-centered2 has-dot-separator" aria-label="breadcrumbs">
+    <ul>
+        {{ $breadcrumbs := split $url "/" }}
+        <li {{ if eq 1 (len $breadcrumbs) }} class="is-active" {{ end }}><a href="{{ .Site.BaseURL | relURL }}">home</a></li>
+        {{ $Scratch := .Scratch }}
+        {{ .Scratch.Set "breadcrumbLink" "/" }}
+        {{ range $index, $element := $breadcrumbs }}
+        {{ if ne $element "" }}
+            {{ $Scratch.Add "breadcrumbLink" $element }}
+            {{ $Scratch.Add "breadcrumbLink" "/" }}
+            <li class="{{ if eq $index (sub (len $breadcrumbs) 2) }}is-active{{ end }}">
+                <a href="{{ $Scratch.Get "breadcrumbLink" | relURL }}">
+                    {{ $element }}
+                </a>
+            </li>
+            {{ end }}
+        {{ end }}
+    </ul>
+</nav>

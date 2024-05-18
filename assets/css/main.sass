@@ -1,0 +1,213 @@
+$primary-color: hsl(171, 100%, 41%)
+$primary-color-dark: hsl(171, 100%, 29%)
+
+
+
+body, body *
+    font-family: 'Poppins', sans-serif
+
+*
+    // Default transitions
+    -webkit-transition: all 0.2s ease-in-out
+    -moz-transition: all 0.2s ease-in-out
+    transition: all 0.2s ease-in-out
+
+hr
+    background-color: #e5e5e5
+
+
+.has-rounded-border
+    overflow: hidden
+    border-radius: 5px
+
+#main, #main-contnet
+    min-height: calc(750px)
+
+#backtotop
+    position: fixed
+    bottom: 3rem
+    right: 3rem
+
+.footer , .navbar
+    a 
+        color: #505050
+    a:hover 
+        // color: #00c4a7
+        color: #000
+
+a.text-primary-dark-hover:hover
+    color: $primary-color-dark
+
+a.text-primary-hover:hover
+    color: $primary-color
+
+#home a:hover:not(.button), #main a:hover:not(.button), a.underline-hover:hover
+    text-decoration: underline
+    text-decoration-style: dotted
+
+.footer 
+    a.underline-hover:hover
+        color: $primary-color
+
+
+$socialIcons: ("facebook": '#3b5998', 
+"facebook-square": '#3b5998', 
+"twitter": '#1da1f2', 
+"instagram": '#e1306c', 
+"youtube": '#ff0000',
+"linkedin": '#0077b5',
+"github": '#333',
+"github-square": '#333',
+"flickr": '#ff0084',
+"tumblr": '#32506d',
+"dribbble": '#ea4c89',
+"behance": '#1769ff',
+"vimeo": '#1ab7ea',
+"soundcloud": '#ff5500',
+"spotify": '#7bb32e',
+"reddit": '#ff4500',
+"vine": '#00b489',
+"foursquare": '#0072b1',
+"steam": '#7eb400',
+"skype": '#00aff0',
+"docker": "#0db7ed",
+"bitbucket": "#205081",
+"gitlab": "#e34a6e",
+"stack-overflow": "#f48024",
+"slack": "#2eb886",
+"whatsapp": "#25d366",
+"telegram": "#0088cc",)
+
+
+.social-icons a:hover
+    color: #555555 !important
+    text-decoration: none !important
+
+    @each $type, $typeVal in $socialIcons
+        .fa-#{$type}
+            color: #{$typeVal} !important
+
+// Navbar
+.navbar-burger:hover
+    border-radius: 5px
+
+// Content
+.content 
+    pre *
+        font-family: 'Source Code Pro', monospace
+    pre
+        background-color: unset !important
+        color: unset !important
+    pre,.hljs
+        padding: 1rem 1.5rem
+        border-radius: 5px
+        // background: #f0f0f0
+
+// Home 
+$homeTop-type: ( "white": ("bg": #FFFFFF, "text": #000), "dark": ("bg": #000000, "text": #FFFFFF) )
+$homeTop-opacity: (0.25, 0.5, 0.75, 0.9, .95, 1)
+
+
+#home
+    .section-top 
+        background-repeat: no-repeat
+        background-size: cover
+        background-position: center
+        background-attachment: scroll
+
+        @each $type, $typeVal in $homeTop-type
+            @each $val in $homeTop-opacity
+                $name: "#{$type}"
+                @if  $val != 1
+                    $name: "#{$type}-#{$val * 100}"
+
+                .top-container[data-bg="#{$name}"]
+                    background-color: rgba(map-get($typeVal, bg), $val) !important
+
+                .top-container[data-bg="#{$name}"] .text
+                    color: map-get($typeVal, text)
+                .top-container[data-bg="#{$name}"] .text-light
+                    color: rgba(map-get($typeVal, text), $val)
+
+
+        .columns
+            min-height: 600px
+
+    .section-about
+
+    .section-services
+
+    .section-clients
+        .slider-container
+            align-items: center
+
+        #carousel-clients 
+            overflow: hidden
+
+        #carousel-clients 
+            .slider
+                border-radius: 5px
+                overflow: hidden
+                padding-top: .5rem
+                padding-bottom: .5rem
+                
+            .slider::after
+                left: -5px
+            .slider::before
+                right: -5px
+
+            .slider::after, .slider::before
+                z-index: 99999
+                content: ""
+                position: absolute
+                top: 0
+                width: 5px
+                height: 100%
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.562)
+
+            img
+                max-height: 200px
+                
+    .section-contact
+
+
+// Responsive
+$mobile-width: 768px
+$tablet-width: 1024px
+$desktop-width: 1215px
+$widescreen-width: 1407px
+
+@media screen and (min-width: $tablet-width)
+    .hero.is-medium .hero-body
+        padding-top: 6rem
+        padding-bottom: 6rem
+        
+@media screen and (max-width: $mobile-width)
+
+    .footer 
+        .image
+            margin: 0 auto !important
+            margin-bottom: 1rem !important
+
+        .extra *
+            margin-bottom: 1rem !important
+
+    #home 
+        .section-about
+            text-align: center
+        
+        .section
+            img 
+                max-height: 200px
+
+@media screen and (max-width: $tablet-width)
+
+    #home 
+        .section-top
+            .columns
+                min-height: 400px
+                margin-top: 3rem !important
+            .column
+                padding:  0 2rem
+            img
+                max-height: 300px

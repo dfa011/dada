@@ -1,0 +1,114 @@
+<!-- Bottom Footer -->
+<hr class="mt-0">
+<footer class="is-unselectable footer has-text-centered has-text-left-tablet">
+    <div class="container">
+        <div class=" mb-5-tablet">
+            <div class="columns"  {{ if .Site.Params.EnableAOS }} data-aos="fade-up" data-aos-once="true" {{ end }}>
+                <div class="column is-one-third-desktop has-text-centered has-text-left-tablet">
+                    <img alt="icon" class="image is-64x64 mb-3" src="{{ .Site.Params.icon | relURL }}">
+                    <a class="is-size-4 has-text-black mt-4" href="{{ .Site.BaseURL | relURL }}">
+                        {{ if .Site.Params.Footer.Title }}
+                        {{ .Site.Params.Footer.Title }}
+                        {{ else }}
+                        {{ .Site.Title }}
+                        {{ end }}
+                    </a>
+                    {{ if .Site.Params.Footer.Subtitle }}
+                    <div class="is-size-6 has-text-grey">{{ .Site.Params.Footer.Subtitle }}</div>
+                    {{ end }}
+                </div>
+
+                <!-- Section 1 -->
+                {{ partial "footer/section.html" .Site.Data.footer_nav.section1 }}
+
+                <!-- Section 2 -->
+                {{ partial "footer/section.html" .Site.Data.footer_nav.section2 }}
+
+                <!-- Section 3 -->
+                {{ partial "footer/section.html" .Site.Data.footer_nav.section3 }}
+            </div>
+        </div>
+
+        <hr class="my-6"  {{ if .Site.Params.EnableAOS }} data-aos="fade-in" data-aos-once="true" {{ end }}>
+
+        <!-- Copyright & PoweredBy -->
+        <div class="columns copyright-poweredby"  {{ if .Site.Params.EnableAOS }} data-aos="fade-in" data-aos-once="true" {{ end }}>
+
+            <!-- extra -->
+            <div class="extra column is-size-7 columns mt-2">
+                <!-- Copyright -->
+                <div class="copyright">
+                    © <a target="{{ .Site.Params.Copyright.Target }}"
+                        href="{{ if .Site.Params.Copyright.Url }}{{ .Site.Params.Copyright.Url | relURL }}{{ else }}{{ .Site.BaseURL | relURL }}{{ end }}">
+                        {{ if .Site.Params.Copyright.Text }}
+                        {{ .Site.Params.Copyright.Text }}
+                        {{ else }}
+                        {{ .Site.Title }}
+                        {{ end }}
+                    </a> {{ now.Format "2006"}}
+                </div>
+
+                {{ if .Site.Params.termsPage }}
+                <!-- Terms page -->
+                <div class="ml-4">
+                    <a class="underline-hover" href="{{ .Site.Params.termsPage | relURL }}">Terms</a>
+                </div>
+                {{ end }}
+
+                {{ if .Site.Params.privacyPage }}
+                <!-- Privacy page -->
+                <div class="ml-4">
+                    <a class="underline-hover" href="{{ .Site.Params.privacyPage | relURL }}">Privacy</a>
+                </div>
+                {{ end }}
+
+                <!-- Sitemap -->
+                <div class="ml-4">
+                    <a class="underline-hover" href="{{ "sitemap.xml" | relURL }}">Site Map</a>
+                </div>
+            </div>
+
+
+            <!-- Social Icons -->
+            <div class="column has-text-right-tablet is-size-4">
+                {{ if .Site.Params.Social }}
+                <div class="social-icons">
+                    {{ range $key, $item := .Site.Params.Social }}
+                    <a class="has-text-grey ml-3" href="{{ $item.url | relURL }}" target="_blank"
+                        rel="noopener noreferrer">
+                        <span class="icon">
+                            <i class="fa-brands {{ $item.icon }}"></i>
+                        </span>
+                    </a>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+        </div>
+
+
+        {{ if (and (.Site.Params.HidePoweredBy) (.Site.Params.HideMadeWith)) }}
+        {{ else }}
+        <div class="mt-6 has-text-centered is-size-7"  {{ if .Site.Params.EnableAOS }} data-aos="fade-down" data-aos-once="true" {{ end }}>
+            <!-- PoweredBy -->
+            {{ if (not (.Site.Params.HidePoweredBy)) }}
+            <div class="mt-4">
+                powered by: <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a>
+                <span class="px-1">|</span>
+                <a href="https://github.com/AcknologyHQ/impact-hugo" target="_blank" rel="noopener noreferrer"
+                    class="">Impact Theme</a>
+            </div>
+            {{ end }}
+
+            <!-- Made with -->
+            {{ if (not (.Site.Params.HideMadeWith)) }}
+            <div class="mt-4">
+                <a class="" href="https://bulma.io" target="_blank" rel="noopener noreferrer">
+                    <img class="" src="https://bulma.io/images/made-with-bulma.png" alt="Made with Bulma" width="100">
+                </a>
+            </div>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</footer>

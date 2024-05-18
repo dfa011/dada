@@ -1,0 +1,38 @@
+section1:
+  title: "Section 1"
+  show: false
+  links:
+    - title: "Link 11"
+      url: "#"
+    - title: "Link 12 - blank"
+      url: "#"
+      target: "_blank"
+    - title: "Link 13 - blank"
+      url: "#"
+      target: "_blank"
+      
+section2:
+  title: "Section 2"
+  show: false
+  links:
+    - title: "Link 21"
+      url: "#"
+    - title: "Link 22 - blank"
+      url: "#"
+      target: "_blank"
+    - title: "Link 23 - blank"
+      url: "#"
+      target: "_blank"
+      
+section3:
+  title: "Section 3"
+  show: false
+  links:
+    - title: "Link 31"
+      url: "#"
+    - title: "Link 32 - blank"
+      url: "#"
+      target: "_blank"
+    - title: "Link 33 - blank"
+      url: "#"
+      target: "_blank"

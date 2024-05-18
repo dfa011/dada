@@ -1,0 +1,76 @@
+<!--
+
+Impact Theme © 2022 Acknology Co.
+Licensed under MIT.
+
+AboutUs: https://acknology.co/
+-->
+
+<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en{{ end }}">
+
+{{ partial "copy_head.html" . }}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Error 404 | Page Not Found | {{ .Site.Title }}</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ .Site.Params.icon | relURL }}" type="image/x-icon">
+
+    <!-- imports -->
+    {{- partial "imports/preconnect.html" -}}
+    {{/*  {{- partial "imports/styles.html" -}}  */}}
+
+    {{ "<!-- Bulma CSS -->" | safeHTML }}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.x/css/bulma.min.css" crossorigin="anonymous">
+    
+    {{ "<!-- Font Awesome -->" | safeHTML }}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.x/css/all.min.css" crossorigin="anonymous">
+    
+    {{ "<!-- GoogleFonts -->" | safeHTML }}
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700" rel="stylesheet" type="text/css" crossorigin="anonymous">
+
+    {{/*  Custom Style  */}}
+    <style>
+    body, body *{
+        font-family: 'Poppins', sans-serif;
+    }
+    </style>
+</head>
+
+<!-- Body -->
+<body class="has-background-white-bis is-unselectable">
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="">
+                    <img style="max-height: 300px;" class="" src="{{ "/assets/images/undraw-taken.svg" | relURL }}" alt="">
+                </div>
+                <h1 class="is-size-1 is-size-2-touch title">
+                    Error 404
+                </h1>
+                <h2 class="is-size-5 my-4">
+                    Oops! Page not found
+                </h2>
+                <p>
+                    The page you were looking for was not found.
+                </p>
+                <a href="{{ .Site.BaseURL | relURL }}" class="button is-primary is-outlined mt-6 is-medium">
+                   <i class="fas fa-angle-left pr-3"></i>
+                   Back to home
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- GoogleAnalytics -->
+    {{ template "_internal/google_analytics.html" . }}
+
+</body>
+
+</html>

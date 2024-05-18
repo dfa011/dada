@@ -1,0 +1,32 @@
+<section class="section-top hero is-large" style="background-image: url('{{ .Site.Data.home.top.bgImg | relURL }}');">
+    <div class="top-container" data-bg="{{ .Site.Data.home.top.bg }}">
+        <div class="container">
+            <div class="columns is-vcentered is-block-mobile">
+                <div class="column is-half-tablet"  {{ if .Site.Params.EnableAOS }} data-aos="fade-left" data-aos-once="true" {{ end }}>
+                    <p class="is-size-2 is-size-4-touch text">
+                        {{ .Site.Data.home.top.title }}
+                    </p>
+                    <p class="is-size-6 has-text-grey-dark">
+                        {{ .Site.Data.home.top.subtitle }}
+                    </p>
+                    <div class="has-text-grey my-6">
+                        {{ .Site.Data.home.top.text | safeHTML }}
+                    </div>
+
+                    {{ if .Site.Data.home.top.link }}
+                    <a class="mt-5 button is-primary" href="{{ .Site.Data.home.top.link | relURL }}"
+                        target="{{ .Site.Data.home.top.linkTarget }}" rel="noopener noreferrer">
+                        {{ if .Site.Data.home.top.linkIcon }}
+                        <i class="fa {{ .Site.Data.home.top.linkIcon }} pr-3" aria-hidden="true"></i>
+                        {{ end }}
+                        {{ .Site.Data.home.top.linkText }}
+                    </a>
+                    {{ end }}
+                </div>
+                <div class="column is-hidden-mobile"  {{ if .Site.Params.EnableAOS }} data-aos="fade-right" data-aos-once="true" {{ end }}>
+                    <img src="{{ .Site.Data.home.top.image | relURL }}" alt="" class="image has-rounded-border">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

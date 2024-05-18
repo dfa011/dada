@@ -1,0 +1,41 @@
+<!-- Import for Styles -->
+
+{{ "<!-- Bulma CSS -->" | safeHTML }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.x/css/bulma.min.css" crossorigin="anonymous">
+
+{{ "<!-- Font Awesome -->" | safeHTML }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.x/css/all.min.css" crossorigin="anonymous">
+
+{{/*  Highlight JS  */}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/default.min.css">
+
+{{/*  Bulma Plugins  */}}
+{{ "<!-- carousel -->" | safeHTML }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
+
+
+
+
+
+{{/*  always at the end  */}}
+{{/*  Customizations  */}}
+
+
+{{ "<!-- Custom CSS -->" | safeHTML }}
+{{- $sass         := "css/main.sass" }}
+{{- $cssTarget    := "assets/css/main.css" }}
+{{- $cssOpts      := (dict "targetPath" $cssTarget "outputStyle" "compressed") }}
+{{- $css := resources.Get $sass | toCSS $cssOpts }}
+<link rel="stylesheet" type="text/css" href="{{ $css.RelPermalink }}">
+
+
+{{ "<!-- GoogleFonts -->" | safeHTML }}
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700" rel="stylesheet" type="text/css" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet"> 
+
+{{ "<!-- Extra GoogleFonts -->" | safeHTML }}
+{{- $fontName     := .Site.Params.font.name | default "Roboto" }}
+{{- $fontFace     := replace $fontName " " "+" }}
+{{- $fontSizes    := delimit (.Site.Params.font.sizes | default (slice 300 400 600 700)) "," }}
+{{- $fontUrl      := printf "https://fonts.googleapis.com/css?family=%s:%s" $fontFace $fontSizes }}
+<link href="{{ $fontUrl | relURL }}" rel="stylesheet" crossorigin="anonymous" type="text/css">

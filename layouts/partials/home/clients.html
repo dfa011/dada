@@ -1,0 +1,57 @@
+<section class="section-clients section container" id="{{ replace (lower .Site.Data.home.clients.title) " " "-" }}">
+    <div class=" has-text-centered"  {{ if .Site.Params.EnableAOS }} data-aos="fade-up" data-aos-once="true" {{ end }}>
+        <div class="is-size-2 is-size-3-mobile has-text-grey-dark has-text-weight-semibold">
+            {{ if .Site.Data.home.clients.title }}
+            {{ .Site.Data.home.clients.title }}
+            {{ else }}
+            Reach Out
+            {{ end }}
+        </div>
+        <p class="has-text-grey">
+            {{ .Site.Data.home.clients.subtitle | safeHTML }}
+        </p>
+    </div>
+
+    <div class="mt-5">
+        <div id="carousel-clients" class="carousel"  {{ if .Site.Params.EnableAOS }} data-aos="fade-down" data-aos-once="true" {{ end }}>
+            <!-- Start Carousel -->
+            {{ $items := .Site.Data.home.clients.list }}
+            {{ $len := sub ($items | len) 1 }}
+            {{ $dups := 7 }}
+            {{ if gt $len 3 }}
+                {{ $dups := 3 }}
+            {{ end }}
+            {{ if gt $len 6 }}
+                {{ $dups := 0 }}
+            {{ end }}
+
+            {{ range $j, $Seq := (seq $dups) }}
+                {{ range $i, $item := $items }}
+                    <div class="item-{{ $i }} mx-4">   
+                        {{ if $item.url }} 
+                        <a href="{{ $item.url | relURL }}" target="_blank">
+                        {{ end }}
+                            <img src="{{ $item.image | relURL }}" title="{{ $item.name }}" alt="{{ $item.name }}" class="has-rounded-border">
+                        {{ if $item.url }} 
+                        </a>
+                        {{ end }}
+                    </div>
+                {{end }}
+            {{end }}
+            <!-- End Carousel -->
+        </div>
+    </div>
+
+    {{ if .Site.Data.home.clients.footer }}
+    <div class="is-size-7 has-text-centered mt-2 has-text-grey-light">
+        {{ .Site.Data.home.clients.footer }}
+    </div>
+    {{ end }}
+</section>
+
+<style>
+    .slider-navigation-previous,
+    .slider-navigation-next {
+        display: none;
+    }
+</style>

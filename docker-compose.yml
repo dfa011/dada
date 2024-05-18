@@ -1,0 +1,51 @@
+version: '3'
+
+networks:
+  impact_hugo_net:
+    driver: bridge
+
+
+services:
+
+  hugo:
+    image: klakegg/hugo:ext-alpine
+    container_name: impact_hugo
+    user: ${CURRENT_UID}
+    command: help
+    volumes:
+      - ".:/src"
+
+  hugoExample:
+    image: klakegg/hugo:ext-alpine
+    container_name: impact_hugo_example
+    user: ${CURRENT_UID}
+    working_dir: "/src/impact/exampleSite"
+    command: help
+    volumes:
+      - "./:/src/impact"
+
+  server:
+    image: klakegg/hugo:ext-alpine
+    container_name: impact_hugo_server
+    user: ${CURRENT_UID}
+    restart: unless-stopped
+    working_dir: "/src/impact/exampleSite"
+    command: ["server", "--themesDir", "../..", "--watch" , "-D"]
+    volumes:
+      - "./:/src/impact"
+    networks: 
+      - impact_hugo_net
+    ports:
+      - ${HTTP_PORT:-1313}:1313
+
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: impact_hugo_nginx
+    restart: "no"
+    working_dir: /var/www/html
+    volumes:
+      - ./dist:/var/www/html:ro
+      - ./.docker/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - ${HTTP_PORT_DIST:-8888}:80

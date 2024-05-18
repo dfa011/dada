@@ -1,0 +1,35 @@
+section1:
+  title: "Pages"
+  show: true
+  links:
+    - title: "About"
+      url: "/about/"
+    
+    - title: "Contact Us"
+      url: "/contact/"
+
+    - title: "404"
+      url: "/404.html"
+      # target: "_blank"
+      
+section2:
+  title: "Theme"
+  show: true
+  links:
+    - title: "Showcase"
+      url: "/demo/"
+    - title: "Docs"
+      url: "/docs/"
+    - title: "Credits"
+      url: "/credits/"
+      
+section3:
+  title: "Company"
+  show: true
+  links:
+    - title: "About Us"
+      url: "https://acknology.co/?utm_source=impact-theme&utm_medium=link"
+      target: "_blank"
+    - title: "Blog"
+      url: "https://blog.acknology.co/?utm_source=impact-theme&utm_medium=link"
+      target: "_blank"

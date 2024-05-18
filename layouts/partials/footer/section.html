@@ -1,0 +1,14 @@
+<div class="column">
+    <div class="is-size5 is-capitalized mb-2">
+        {{ .title }}
+    </div>
+    <div class="mt-3 nav-items ml-2">
+        {{ range $item := .links }}
+        <div class="mb-2">
+            <a class="underline-hover" href="{{ $item.url | relURL }}" target="{{ $item.target }}">
+                {{ $item.title }}
+            </a>
+        </div>
+        {{ end }}
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<!-- Import for Scripts -->
+
+
+{{ "<!-- AlpineJS -->" | safeHTML }}
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x/dist/cdn.min.js"></script>
+
+{{ $enableAOS := .Site.Params.EnableAOS }}
+{{ if $enableAOS }}
+{{ "<!-- AnimateOnScroll | AoS -->" | safeHTML }}
+<script src="https://cdn.jsdelivr.net/npm/aos@2.x/dist/aos.min.js"></script>
+{{ end }}
+
+{{/*  Highlight JS  */}}
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"></script>
+
+
+{{/*  Bulma Plugins  */}}
+<script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
+
+
+{{/* always at the end    */}}
+{{/*  Custom Scripts  */}}
+{{ "<!-- Custom JS -->" | safeHTML }}
+<!-- <script src="{{ "assets/js/main.js" | relURL }}"></script> -->
+
+{{- $mainJS     := "js/main.js" }}
+{{- $jsTarget   := "assets/js/main.js" }}
+{{- $jsOpts     := (dict "targetPath" $jsTarget) }}
+{{- $jsOut      := resources.Get $mainJS | js.Build $jsOpts }}
+<script src="{{ $jsOut.RelPermalink }}"></script>
